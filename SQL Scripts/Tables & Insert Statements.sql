@@ -26,3 +26,5 @@ VALUES
 ('What is overriding?','Overriding is a feature of inheritance where a derived class provides a new implementation of a method that is already defined in its base class, replacing the base class implementation.'),
 ('What is overloading?','Overloading refers to methods that have the same name but different parameters, allowing multiple versions of the method to be called based on the information provided.'),
 ('What are the components of a method signature?','The components of a method signature include the method name, parameters, return type, and an optional access modifier.')
+
+SELECT * FROM Question

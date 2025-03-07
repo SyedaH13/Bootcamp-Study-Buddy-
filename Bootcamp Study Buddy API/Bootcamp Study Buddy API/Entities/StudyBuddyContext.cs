@@ -20,7 +20,7 @@ public partial class StudyBuddyContext : DbContext
     public virtual DbSet<Question> Questions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=DefaultConnection");
+        => optionsBuilder.UseSqlServer("Name=StudyBuddy");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
