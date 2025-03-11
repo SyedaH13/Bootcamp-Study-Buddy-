@@ -6,7 +6,7 @@ CREATE TABLE Question (
 
 CREATE TABLE Favorites (
 	Id INT IDENTITY(1,1) PRIMARY KEY,
-	FavoriteId INT FOREIGN KEY REFERENCES Question(Id) -- "FavoriteId" should've been "QuestionId"
+	FavoriteId INT FOREIGN KEY REFERENCES Question(Id), -- "FavoriteId" should've been "QuestionId"
 )
 
 INSERT INTO Question (QuestionText, AnswerText)
@@ -28,3 +28,12 @@ VALUES
 ('What are the components of a method signature?','The components of a method signature include the method name, parameters, return type, and an optional access modifier.')
 
 SELECT * FROM Question
+
+SELECT * FROM Favorites
+
+SELECT * 
+FROM Favorites
+JOIN Question ON Favorites.FavoriteId = Question.Id
+
+DELETE FROM Question WHERE ID >15
+

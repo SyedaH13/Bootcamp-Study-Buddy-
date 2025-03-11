@@ -1,5 +1,20 @@
-<h2>Questions List</h2>
-<ul>
-  <li *ngFor="let question of QAlist">
-    {{ question.questionText }} - Answers: {{question.answerText}}
-  </li></ul>
+<h2>Technical Interview Questions</h2>
+
+<div *ngIf="QAlist?.$values.length > 0">
+  <div class="question-container"
+    (click)="QAlist?.$values[currentQuestionIndex].isAnswerVisible = !QAlist?.$values[currentQuestionIndex].isAnswerVisible">
+    Q: {{ QAlist?.$values[currentQuestionIndex].questionText }}
+  </div>
+
+  <div *ngIf="QAlist?.$values[currentQuestionIndex].isAnswerVisible" class="answer-container">
+    <p>{{ QAlist?.$values[currentQuestionIndex].answerText }}</p>
+  </div>
+
+  <div class="button-container">
+    <button (click)="showNextQuestion()">Next Question</button>
+
+    <button (click)="addFavorites(QAlist?.$values[currentQuestionIndex].id)">
+      Add to Favorites
+    </button>
+  </div>
+</div>

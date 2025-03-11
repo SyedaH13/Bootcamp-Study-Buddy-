@@ -20,7 +20,12 @@ builder.Services.AddCors(options =>
 
         });
     });
-
+builder.Services.AddControllers()
+    .AddJsonOptions(options => 
+    { 
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve; 
+        options.JsonSerializerOptions.WriteIndented = true; 
+    });
 IConfigurationBuilder buildConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
 IConfiguration configuration = buildConfig.Build();
 builder.Services.AddDbContext<StudyBuddyContext>(options => options.UseSqlServer(configuration.GetConnectionString("StudyBuddy")));
@@ -28,11 +33,8 @@ builder.Services.AddDbContext<StudyBuddyContext>(options => options.UseSqlServer
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 

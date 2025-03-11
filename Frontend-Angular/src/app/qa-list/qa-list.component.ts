@@ -10,7 +10,8 @@ import { ApiService } from '../api.service';
 })
 export class QAListComponent implements OnInit {
 
-  QAlist: any[] = [];
+  QAlist: any;
+  currentQuestionIndex: number = 0;
 
   constructor(private apiService: ApiService) { }
 
@@ -22,6 +23,20 @@ export class QAListComponent implements OnInit {
     );
 
   }
+  showNextQuestion() {
+    if (this.currentQuestionIndex < this.QAlist?.$values.length - 1) {
+      this.currentQuestionIndex++;
+    } else {
+      this.currentQuestionIndex = 0; // Reset to the first question when reach the end
+    }
+  }
+  addFavorites(questionId: number): void {
+    this.apiService.addFavorites(questionId).subscribe(response => {
+      console.log('Favorite added:', response);
+      alert('Favorite Added!')
+    });
+  }
+
 }
 
 
