@@ -75,12 +75,20 @@ namespace Bootcamp_Study_Buddy_API.Controllers
         // POST: api/Questions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Question>> PostQuestion(Question question)
+        //public async Task<ActionResult<Question>> PostQuestion(Question question)
+        //{
+        //    _context.Questions.Add(question);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetQuestion", new { id = question.Id }, question);
+        //}
+        public async Task<ActionResult<Question>> PostQuestion(QuestionDTO question)
         {
-            _context.Questions.Add(question);
+            var newQuestion = new Question { QuestionText = question.Question, AnswerText = question.Answer };
+            _context.Questions.Add(newQuestion);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetQuestion", new { id = question.Id }, question);
+            return CreatedAtAction("GetQuestion", new { id = newQuestion.Id }, newQuestion);
         }
 
         // DELETE: api/Questions/5

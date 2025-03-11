@@ -24,14 +24,15 @@ namespace Bootcamp_Study_Buddy_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Favorite>>> GetFavorites()
         {
-            return await _context.Favorites.ToListAsync();
+            var restaurants = await _context.Favorites.Include(f => f.FavoriteNavigation).ToListAsync();
+            return restaurants;
         }
 
         // GET: api/Favorites/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Favorite>> GetFavorite(int id)
         {
-            var favorite = await _context.Favorites.FindAsync(id);
+            var favorite = await _context.Favorites.Include(f => f.FavoriteNavigation).FirstOrDefaultAsync(f => f.Id == id);
 
             if (favorite == null)
             {
@@ -77,9 +78,13 @@ namespace Bootcamp_Study_Buddy_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Favorite>> PostFavorite(Favorite favorite)
         {
-            _context.Favorites.Add(favorite);
-            await _context.SaveChangesAsync();
-
+            var newFavorite = await _context.Favorites.Where(f => f.FavoriteId == favorite.FavoriteId).FirstOrDefaultAsync();
+            if (newFavorite == null)
+            {
+                _context.Favorites.Add(favorite);
+                await _context.SaveChangesAsync();
+            }
+            
             return CreatedAtAction("GetFavorite", new { id = favorite.Id }, favorite);
         }
 

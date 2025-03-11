@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +19,21 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/Favorites`);
   }
 
-  addFavorites(questionId : number ) {
-    return this.http.post(`${this.baseUrl}/Favorites`, {questionId}); 
+  addFavorites(questionId: number) {
+    return this.http.post(`${this.baseUrl}/Favorites`, { FavoriteId: questionId });
   }
 
-  RemoveFromFavorites(questionId : number) {
-    return this.http.delete(`${this.baseUrl}/Favorites/${questionId}`); 
+  removeFromFavorites(questionId: number) {
+    return this.http.delete(`${this.baseUrl}/Favorites/${questionId}`);
   }
 
-  addQuestion(questionAnswer: { question: string, answer: string }) { 
-    return this.http.post(`${this.baseUrl}/Questions`, questionAnswer); 
+  addQuestion(questionAnswer: {question: string, answer: string }) {
+    return this.http.post(`${this.baseUrl}/Questions`, questionAnswer);
   }
 
-  removeQuestion(questionId: number) { 
-    return this.http.delete(`${this.baseUrl}/Questions/${questionId}`); }
+  removeQuestion(questionId: number) {
+    return this.http.delete(`${this.baseUrl}/Questions/${questionId}`);
   }
+}
 
 
