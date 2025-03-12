@@ -1,12 +1,15 @@
-<p>favorites works!</p>
+<h2>Favorite Q&As</h2>
 
-<ul>
-    <li *ngFor="let question of favorites?.$values">
-      <p>Q: {{ question.favoriteNavigation.questionText }}</p>
-      <p>A: {{ question.favoriteNavigation.answerText }}</p>
-      <button (click)="RemoveFromFavorites(question.id)">
-        Remove From Favorites
-      </button>
-    </li>
-  </ul>
+<ul class="favorites-list">
+  <li *ngFor="let question of favorites?.$values" class="favorite-item">
+    <div class="qa-content">
+      <p class="question-text">Q: {{ question.favoriteNavigation.questionText }}</p>
+      <p class="answer-text">A: {{ question.favoriteNavigation.answerText }}</p>
+    </div>
+    <button (click)="RemoveFromFavorites(question.id)" class="remove-btn">
+      Remove From Favorites
+    </button>
+  </li>
+</ul>
+
   
