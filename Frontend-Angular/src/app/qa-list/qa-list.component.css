@@ -74,12 +74,22 @@ h2 {
   transform: scale(1.1);
 }
 
-.button-container button:last-child {
+.button-container button:nth-child(2) {
   background-color: #f0aa47;
   color: #333;
 }
 
+.button-container button:nth-child(2):hover {
+  background-color: #cd8624;
+  transform: scale(1.1);
+}
+
+.button-container button:last-child {
+  background-color: rgb(240, 221, 221);
+  color: #333;
+}
+
 .button-container button:last-child:hover {
-  background-color: #c7990f;
+  background-color: #e783ab;
   transform: scale(1.1);
 }

@@ -13,8 +13,10 @@
   <div class="button-container">
     <button (click)="showNextQuestion()">Next Question</button>
 
+    <button (click)="removeQuestion(QAlist?.$values[currentQuestionIndex].id)">Remove Q&A</button>
+
     <button (click)="addFavorites(QAlist?.$values[currentQuestionIndex].id)">
-      Add to Favorites
+      ❤️
     </button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 import { FormsModule } from '@angular/forms';
@@ -11,13 +11,21 @@ import { FormsModule } from '@angular/forms';
 export class QAManagementComponent {
   question: string = '';
   answer: string = '';
+  
   constructor(private apiService: ApiService) { }
+  
   addQuestion(): void {
+    if (this.question.trim() === '' || this.answer.trim() === '') {
+      return;
+    }
+    
     const questionAnswer = { question: this.question, answer: this.answer };
     this.apiService.addQuestion(questionAnswer).subscribe(
       response => {
-        console.log(questionAnswer)
-        alert('question added')
+        console.log(questionAnswer);
+        alert('question added');
+        this.question = '';
+        this.answer = '';
       }
     );
   }

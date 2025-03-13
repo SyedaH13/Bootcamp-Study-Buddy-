@@ -35,5 +35,8 @@ SELECT *
 FROM Favorites
 JOIN Question ON Favorites.FavoriteId = Question.Id
 
-DELETE FROM Question WHERE ID >15
+DBCC CHECKIDENT ('Question', RESEED, 0)
+
+
+
 
