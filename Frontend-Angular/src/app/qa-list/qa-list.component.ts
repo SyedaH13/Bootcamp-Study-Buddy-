@@ -36,9 +36,14 @@ export class QAListComponent implements OnInit {
       alert('Favorite Added!')
     });
   }
-
+  removeQuestion(questionId: number): void {
+    this.apiService.removeQuestion(questionId).subscribe(response => {
+      alert("Question Removed!")
+      console.log('question removed', response)
+      if (this.QAlist.$values) {
+        this.QAlist.$values = this.QAlist.$values.filter((q: { id: number }) => q.id !== questionId).slice();
+      }
+      this.showNextQuestion()
+    });
+  }
 }
-
-
-
-
